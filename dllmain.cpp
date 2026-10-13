@@ -1,13 +1,17 @@
 #include <windows.h>
 #include "./memory.h"
-
-#include <string>
-
-const wchar_t* moduleName = L"TWFC.exe";
+#include "./utils.h"
 
 DWORD WINAPI MainThread(LPVOID)
 {
+	const wchar_t* moduleName = L"TWFC.exe";
 	
+	const DWORD baseAddress = GetModuleBaseAddress(moduleName);
+
+	if (baseAddress == 0)
+	{
+		WarnBox("failed to get module base address");
+	}
 
 	return TRUE;
 }
@@ -20,7 +24,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved)
 		
 		if (hThread == NULL)
 		{
-			// message box
+			WarnBox("failed to create thread");
 		}
 		else
 		{
