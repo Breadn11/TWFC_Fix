@@ -11,9 +11,10 @@ DWORD WINAPI MainThread(LPVOID)
 	if (baseAddress == 0)
 	{
 		WarnBox("failed to get module base address");
+		return 0;
 	}
 
-	return TRUE;
+	return 1;
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved)
@@ -24,12 +25,9 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved)
 		
 		if (hThread == NULL)
 		{
-			WarnBox("failed to create thread");
+			return FALSE;
 		}
-		else
-		{
-			CloseHandle(hThread);
-		}
+		CloseHandle(hThread);
 	}
 	return TRUE;
 }
