@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="TWFC_Fix.vcxproj" Id="ff9325ee-e018-41d9-ac3a-1364f68306bd" />
+</Solution>
