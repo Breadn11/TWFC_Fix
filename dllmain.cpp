@@ -11,10 +11,10 @@ DWORD WINAPI MainThread(LPVOID)
 	if (baseAddress == 0)
 	{
 		WarnBox("failed to get module base address");
-		return 0;
+		return 1;
 	}
 
-	return 1;
+	return 0;
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved)
