@@ -46,3 +46,19 @@ void ConsoleEnable()
 	freopen_s(&fp, "CONOUT$", "w", stderr);
 	freopen_s(&fp, "CONIN$", "r", stdin);
 }
+
+bool StrToBool(std::string input)
+{
+	if (input == "false")
+	{
+		return false;
+	}
+	else if (input == "true")
+	{
+		return true;
+	}
+	else
+	{
+		throw std::invalid_argument("invalid bool, value must be true or false");
+	}
+}

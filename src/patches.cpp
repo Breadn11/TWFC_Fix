@@ -1,20 +1,49 @@
 #include <windows.h>
+#include <iostream>
 
 namespace patches {
 
+
 bool FPS(DWORD baseAddress, float fpsDesired)
 {
-	DWORD fpsAddress = baseAddress + 0x2103F30;
+	DWORD addrFPS = baseAddress + 0x2103F30;
 
-	if (*(float*)(fpsAddress) != 30.0f)
+	if (*(float*)(addrFPS) != 30.0f)
 	{
 		return 1;
 	}
 	else
 	{
-		*(float*)fpsAddress = fpsDesired;
+		*(float*)addrFPS = fpsDesired;
 		return 0;
 	}
 }
+
+bool PlayerTexture(DWORD baseAddress)
+{
+	DWORD addrMat = baseAddress + 0x2EC1BC;
+	DWORD addrTex = baseAddress + 0x2EC22E;
+
+	if (*(BYTE*)addrMat != 0x6E || *(BYTE*)addrTex != 0x01)
+	{
+		return 1;
+	}
+
+	DWORD oldProtection{};
+
+	if (!VirtualProtect((LPVOID)addrMat, 0x73, PAGE_EXECUTE_READWRITE, &oldProtection))
+	{
+		return 1;
+	}
+
+	*(BYTE*)addrMat = 0x5E;
+	*(BYTE*)addrTex = 0x00;
+
+	DWORD unused{};
+	VirtualProtect((LPVOID)addrMat, 0x73, oldProtection, &unused);
+
+	return 0;
+}
+
 
 }

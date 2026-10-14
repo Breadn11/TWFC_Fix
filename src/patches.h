@@ -2,8 +2,13 @@
 
 #include <windows.h>
 
-namespace patches {
+namespace patches 
+{
+
 
 bool FPS(DWORD baseAddress, float fpsDesired);
+
+bool PlayerTexture(DWORD baseAddress);
+
 
 }
