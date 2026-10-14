@@ -6,19 +6,24 @@
 
 namespace config
 {
+	const std::string iniFile = "scripts/CommunityPatch.ini";
 	const wchar_t* moduleName = L"TWFC.exe";
 	float fpsDesired = 60.0f;
 }
 
 bool HandleIni()
 {
-	mINI::INIFile file("scripts/CommunityPatch.ini");
+	mINI::INIFile file(config::iniFile);
 	mINI::INIStructure ini;
 
 	if (!file.read(ini))
 	{
 		ini["config"]["fps"] = "60";
-		file.generate(ini);
+		
+		if (!file.generate(ini))
+		{
+			return 1;
+		}
 	}
 
 	std::string valRead = ini.get("config").get("fps");
