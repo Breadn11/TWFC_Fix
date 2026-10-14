@@ -82,7 +82,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OutputFile>$(OutDir)CommunityPatch.asi</OutputFile>
+      <OutputFile>C:\.Breadn\Games\Transformers War for Cybertron\Binaries\scripts\CommunityPatch.asi</OutputFile>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -102,7 +102,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OutputFile>$(OutDir)CommunityPatch.asi</OutputFile>
+      <OutputFile>C:\.Breadn\Games\Transformers War for Cybertron\Binaries\scripts\CommunityPatch.asi</OutputFile>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -120,7 +120,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OutputFile>$(OutDir)CommunityPatch.asi</OutputFile>
+      <OutputFile>C:\.Breadn\Games\Transformers War for Cybertron\Binaries\scripts\CommunityPatch.asi</OutputFile>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -140,7 +140,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OutputFile>$(OutDir)CommunityPatch.asi</OutputFile>
+      <OutputFile>C:\.Breadn\Games\Transformers War for Cybertron\Binaries\scripts\CommunityPatch.asi</OutputFile>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -148,11 +148,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp" />
-    <ClCompile Include="src\memory.cpp" />
+    <ClCompile Include="src\patches.cpp" />
     <ClCompile Include="src\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\memory.h" />
+    <ClInclude Include="src\mini\ini.h" />
+    <ClInclude Include="src\patches.h" />
     <ClInclude Include="src\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

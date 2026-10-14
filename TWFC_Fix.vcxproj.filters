@@ -10,19 +10,18 @@
     <ClCompile Include="src\dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\memory.cpp">
+    <ClCompile Include="src\utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils.cpp">
+    <ClCompile Include="src\patches.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\memory.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\utils.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\patches.h" />
+    <ClInclude Include="src\mini\ini.h" />
   </ItemGroup>
 </Project>
