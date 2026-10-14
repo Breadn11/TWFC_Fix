@@ -1,18 +1,33 @@
 #include <windows.h>
+#include <iostream>
 #include "./memory.h"
 #include "./utils.h"
 
-DWORD WINAPI MainThread(LPVOID)
+namespace config
 {
 	const wchar_t* moduleName = L"TWFC.exe";
-	
-	const DWORD baseAddress = GetModuleBaseAddress(moduleName);
+	const float fpsDesired = 120.0f;
+}
+
+DWORD WINAPI MainThread(LPVOID)
+{
+	const DWORD baseAddress = GetModuleBaseAddress(config::moduleName);
 
 	if (baseAddress == 0)
 	{
 		WarnBox("failed to get module base address");
 		return 1;
 	}
+
+	DWORD fpsAddress = baseAddress + 0x2103F30;
+
+	if (*(float*)(fpsAddress) != 30.0f)
+	{
+		WarnBox("something went wrong, default fps not detected as 30");
+		return 1;
+	}
+
+	*(float*) fpsAddress = config::fpsDesired;
 
 	return 0;
 }
