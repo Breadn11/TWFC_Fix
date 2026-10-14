@@ -1,5 +1,5 @@
 #pragma once
 
-void WarnBox(const char* message);
+void ErrorBox(const char* message);
 
 void ConsoleEnable();

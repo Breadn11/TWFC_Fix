@@ -15,7 +15,7 @@ DWORD WINAPI MainThread(LPVOID)
 
 	if (baseAddress == 0)
 	{
-		WarnBox("failed to get module base address");
+		ErrorBox("failed to get module base address");
 		return 1;
 	}
 
@@ -23,7 +23,7 @@ DWORD WINAPI MainThread(LPVOID)
 
 	if (*(float*)(fpsAddress) != 30.0f)
 	{
-		WarnBox("something went wrong, default fps not detected as 30");
+		ErrorBox("default fps not detected as 30");
 		return 1;
 	}
 
