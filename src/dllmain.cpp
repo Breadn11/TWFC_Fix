@@ -10,6 +10,7 @@ namespace config
 	const wchar_t* moduleName = L"TWFC.exe";
 	float fpsDesired = 30.0f;
 	bool doTextureFix = true;
+	float desaturationMulti = 1.0f;
 }
 
 bool HandleIni()
@@ -21,6 +22,7 @@ bool HandleIni()
 	{
 		ini["config"]["fps"] = "60";
 		ini["config"]["player_texture_fix"] = "true";
+		ini["config"]["desaturation_multiplier"] = "1";
 		
 		if (!file.generate(ini, true))
 		{
@@ -30,11 +32,13 @@ bool HandleIni()
 
 	std::string valRead_fps = ini.get("config").get("fps");
 	std::string valRead_tex = ini.get("config").get("player_texture_fix");
+	std::string valRead_sat = ini.get("config").get("desaturation_multiplier");
 
 	try 
 	{
 		config::fpsDesired = std::stof(valRead_fps);
 		config::doTextureFix = StrToBool(valRead_tex);
+		config::desaturationMulti = std::stof(valRead_sat);
 	}
 	catch (...)
 	{
@@ -46,7 +50,10 @@ bool HandleIni()
 
 DWORD WINAPI MainThread(LPVOID)
 {
+	// todo: use GetModuleHandleW instead
 	const DWORD baseAddress = GetModuleBaseAddress(config::moduleName);
+
+	//ConsoleEnable();
 
 	if (baseAddress == 0)
 	{
@@ -59,11 +66,14 @@ DWORD WINAPI MainThread(LPVOID)
 		ErrorBox("error reading or writing to CommunityPatch.ini");
 		return 1;
 	}
-
-	if (patches::FPS(baseAddress, config::fpsDesired) == 1)
+	
+	if (config::fpsDesired != 30.0f && config::fpsDesired != 0.0f)
 	{
-		ErrorBox("failed to apply fps patch, default fps not detected as 30");
-		return 1;
+		if (patches::FPS(baseAddress, config::fpsDesired) == 1)
+		{
+			ErrorBox("failed to apply fps patch, default fps not detected as 30");
+			return 1;
+		}
 	}
 
 	if (config::doTextureFix)
@@ -74,7 +84,15 @@ DWORD WINAPI MainThread(LPVOID)
 			return 1;
 		}
 	}
-	
+
+	if (config::desaturationMulti != 1.0f)
+	{
+		if (patches::Desaturation(baseAddress, config::desaturationMulti) == 1)
+		{
+			ErrorBox("failed to apply desaturation patch");
+		}
+	}
+
 	return 0;
 }
 

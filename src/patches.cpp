@@ -8,15 +8,13 @@ bool FPS(DWORD baseAddress, float fpsDesired)
 {
 	DWORD addrFPS = baseAddress + 0x2103F30;
 
-	if (*(float*)(addrFPS) != 30.0f)
+	if (*(float*)addrFPS != 30.0f)
 	{
 		return 1;
 	}
-	else
-	{
-		*(float*)addrFPS = fpsDesired;
-		return 0;
-	}
+	
+	*(float*)addrFPS = fpsDesired;
+	return 0;
 }
 
 bool PlayerTexture(DWORD baseAddress)
@@ -43,6 +41,40 @@ bool PlayerTexture(DWORD baseAddress)
 	VirtualProtect((LPVOID)addrMat, 0x73, oldProtection, &unused);
 
 	return 0;
+}
+
+bool Desaturation(DWORD baseAddress, float newDesatMulti)
+{
+	int attempts{};
+	
+	while (true)
+	{
+		attempts++;
+
+		// failsafe - if someone takes more than 20 sec to load the game, they have bigger problems
+		if (attempts > 20){return 1;}
+		//std::cout << attempts << "\n";
+
+		Sleep(1000);
+		
+		DWORD addrDesat = baseAddress + 0x2210968;
+		
+		addrDesat = *(DWORD*)addrDesat;
+		if (addrDesat == 0){continue;}
+
+		addrDesat += 0x350;
+
+		addrDesat = *(DWORD*)addrDesat;
+		if (addrDesat == 0){continue;}
+
+		addrDesat = *(DWORD*)addrDesat;
+		if (addrDesat == 0){continue;}
+		
+		addrDesat += 0x3C;
+
+		*(float*)addrDesat = newDesatMulti;
+		return 0;
+	}
 }
 
 
