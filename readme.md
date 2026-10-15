@@ -1,14 +1,14 @@
 ## Installation
-- Download the Win32 version of d3d9.dll from [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases).
-- Place d3d9.dll into the game's Binaries folder.
-- Download CommunityPatch.asi from this repository's releases.
-- Make a folder called "scripts" inside the game's Binaries folder, then place CommunityPatch.asi inside of it.
+- Download the Win32 version of `d3d9.dll` from [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases).
+- Place `d3d9.dll` into the game's Binaries folder.
+- Download `CommunityPatch.asi` from this repository's releases.
+- Make a folder called `scripts` inside the game's Binaries folder, then place `CommunityPatch.asi` inside of it.
 
 When installed, it'll automatically load with the game.
 
 
 ## Settings
-To change settings - launch the game at least once, close it, then edit CommunityPatch.ini located in the scripts folder.
+To change settings - launch the game at least once, close it, then edit `CommunityPatch.ini` located in the scripts folder.
 
 **fps**  
 Controls the FPS cap.  
