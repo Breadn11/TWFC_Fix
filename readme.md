@@ -33,5 +33,7 @@ The game's default is `1`.
 
 
 
-## Note
-AI was used to find the cause of the player texture bug, everything else is done and written by-hand.
+## Notes
+- AI was used to find the cause of the player texture bug, everything else is done and written by-hand.
+- I plan to eventually make a complete community patch and package this with it, hence the naming inconsistencies.
+- Feel free to contact me on Discord @ `.breadn`
