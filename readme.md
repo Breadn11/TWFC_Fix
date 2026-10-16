@@ -7,7 +7,7 @@
 When installed, it'll automatically load with the game.
 
 > [!WARNING]
-> If you already have it installed and are updating to a new version, delete `CommunityPatch.ini to generate new settings.
+> If you already have it installed and are updating to a new version, delete `CommunityPatch.ini` to generate new settings.
 
 ## Settings
 To change settings - launch the game at least once, close it, then edit `CommunityPatch.ini` located in the scripts folder.
@@ -19,7 +19,7 @@ The game's default is `30`.
 
 **desaturation_multiplier**  
 A multiplier that controls the intensity of the game's desaturation filter.  
-Set to `0` to completely remove the desaturation, `0.5` to half the intensity, `9999` for black and white, etc.  
+Set to `0` to completely remove the desaturation, `0.5` to halve the intensity, `9999` for black and white, etc.  
 The game's default is `1`.
 
 > [!IMPORTANT]
