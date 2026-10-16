@@ -24,4 +24,7 @@
     <ClInclude Include="src\patches.h" />
     <ClInclude Include="src\mini\ini.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.md" />
+  </ItemGroup>
 </Project>

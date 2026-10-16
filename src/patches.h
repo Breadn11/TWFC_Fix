@@ -11,5 +11,7 @@ bool PlayerTexture(DWORD baseAddress);
 
 bool Desaturation(DWORD baseAddress, float newDesatMulti);
 
+bool TransformInvuln(DWORD baseAddress);
+
 
 }

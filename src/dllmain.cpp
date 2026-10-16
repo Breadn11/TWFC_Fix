@@ -9,8 +9,9 @@ namespace config
 	const std::string iniFile = "scripts/CommunityPatch.ini";
 	const wchar_t* moduleName = L"TWFC.exe";
 	float fpsDesired = 30.0f;
+	float desaturationMulti = 0.0f;
 	bool doTextureFix = true;
-	float desaturationMulti = 1.0f;
+	bool doTransformFix = true;
 }
 
 bool HandleIni()
@@ -21,8 +22,9 @@ bool HandleIni()
 	if (!file.read(ini))
 	{
 		ini["config"]["fps"] = "60";
-		ini["config"]["player_texture_fix"] = "true";
-		ini["config"]["desaturation_multiplier"] = "1";
+		ini["config"]["desaturation_multiplier"] = "0";
+		ini["config"]["fix_player_texture"] = "true";
+		ini["config"]["fix_transform_invincibility"] = "true";
 		
 		if (!file.generate(ini, true))
 		{
@@ -31,14 +33,16 @@ bool HandleIni()
 	}
 
 	std::string valRead_fps = ini.get("config").get("fps");
-	std::string valRead_tex = ini.get("config").get("player_texture_fix");
 	std::string valRead_sat = ini.get("config").get("desaturation_multiplier");
+	std::string valRead_texFix = ini.get("config").get("fix_player_texture");
+	std::string valRead_invulnFix = ini.get("config").get("fix_transform_invincibility");
 
 	try 
 	{
 		config::fpsDesired = std::stof(valRead_fps);
-		config::doTextureFix = StrToBool(valRead_tex);
 		config::desaturationMulti = std::stof(valRead_sat);
+		config::doTextureFix = StrToBool(valRead_texFix);
+		config::doTransformFix = StrToBool(valRead_invulnFix);
 	}
 	catch (...)
 	{
@@ -71,7 +75,7 @@ DWORD WINAPI MainThread(LPVOID)
 	{
 		if (patches::FPS(baseAddress, config::fpsDesired) == 1)
 		{
-			ErrorBox("failed to apply fps patch, default fps not detected as 30");
+			ErrorBox("failed to change fps cap, default fps not detected as 30");
 			return 1;
 		}
 	}
@@ -80,16 +84,27 @@ DWORD WINAPI MainThread(LPVOID)
 	{
 		if (patches::PlayerTexture(baseAddress) == 1)
 		{
-			ErrorBox("failed to apply player texture patch");
+			ErrorBox("failed to apply player texture fix");
+			return 1;
+		}
+	}
+	
+	if (config::doTransformFix)
+	{
+		if (patches::TransformInvuln(baseAddress) == 1)
+		{
+			ErrorBox("failed to apply transformation invincibility fix");
 			return 1;
 		}
 	}
 
+	// todo: find alternative, this property doesn't affect cutscenes
 	if (config::desaturationMulti != 1.0f)
 	{
 		if (patches::Desaturation(baseAddress, config::desaturationMulti) == 1)
 		{
-			ErrorBox("failed to apply desaturation patch");
+			ErrorBox("failed to change desaturation");
+			return 1;
 		}
 	}
 

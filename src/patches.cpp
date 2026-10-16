@@ -1,6 +1,9 @@
 #include <windows.h>
 #include <iostream>
 
+// print raw hex at address:
+// std::cout << std::hex << *(uint64_t*)addr << "\n";
+
 namespace patches {
 
 
@@ -75,6 +78,30 @@ bool Desaturation(DWORD baseAddress, float newDesatMulti)
 		*(float*)addrDesat = newDesatMulti;
 		return 0;
 	}
+}
+
+
+bool TransformInvuln(DWORD baseAddress)
+{
+	DWORD addr = baseAddress + 0x2C1214;
+
+	if (*(uint64_t*)addr != 0x8b550000014b850f)
+	{
+		return 1;
+	}
+
+	DWORD oldProtection{};
+	if (!VirtualProtect((LPVOID)addr, 0x16, PAGE_EXECUTE_READWRITE, &oldProtection))
+	{
+		return 1;
+	}
+	
+	*(uint64_t*)addr = 0x8B55909090909090;
+
+	DWORD unused{};
+	VirtualProtect((LPVOID)addr, 0x16, oldProtection, &unused);
+
+	return 0;
 }
 
 

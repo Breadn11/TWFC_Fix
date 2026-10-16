@@ -2,6 +2,7 @@
 #include <TlHelp32.h>
 #include <iostream>
 #include <cstdio>
+#include <algorithm>
 
 DWORD GetModuleBaseAddress(const wchar_t* processName)
 {
@@ -49,6 +50,11 @@ void ConsoleEnable()
 
 bool StrToBool(std::string input)
 {
+	std::transform(input.begin(), input.end(), input.begin(), [](unsigned char goinkie)
+		{
+			return std::tolower(goinkie);
+		});
+
 	if (input == "false")
 	{
 		return false;
