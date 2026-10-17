@@ -8,7 +8,7 @@ namespace config
 {
 	const std::string iniFile = "scripts/CommunityPatch.ini";
 	const wchar_t* moduleName = L"TWFC.exe";
-	float fpsDesired = 30.0f;
+	float fpsDesired = 60.0f;
 	float desaturationMulti = 0.0f;
 	bool doTextureFix = true;
 	bool doTransformFix = true;
@@ -89,6 +89,8 @@ DWORD WINAPI MainThread(LPVOID)
 		}
 	}
 	
+	// todo: replace all instances of "invincibility" with "invulnerability"
+	// also swap to using memcpy to change exactly 6 bytes instead of 8
 	if (config::doTransformFix)
 	{
 		if (patches::TransformInvuln(baseAddress) == 1)
@@ -99,6 +101,7 @@ DWORD WINAPI MainThread(LPVOID)
 	}
 
 	// todo: find alternative, this property doesn't affect cutscenes
+	// also keep this function last cuz no threading for sleeps
 	if (config::desaturationMulti != 1.0f)
 	{
 		if (patches::Desaturation(baseAddress, config::desaturationMulti) == 1)

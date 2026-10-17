@@ -54,9 +54,7 @@ bool Desaturation(DWORD baseAddress, float newDesatMulti)
 	{
 		attempts++;
 
-		// failsafe - if someone takes more than 20 sec to load the game, they have bigger problems
-		if (attempts > 20){return 1;}
-		//std::cout << attempts << "\n";
+		if (attempts > 45){return 1;}
 
 		Sleep(1000);
 		
