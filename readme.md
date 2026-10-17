@@ -1,11 +1,13 @@
 ## Installation
 - Download the Win32 version of `d3d9.dll` from [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases).
 - Place `d3d9.dll` into the game's Binaries folder.
-- Download `CommunityPatch.asi` from this repository's releases.
+- On the right side of this page, click on "Releases" and download `CommunityPatch.asi`
 - Make a folder called `scripts` inside the game's Binaries folder, then place `CommunityPatch.asi` inside of it.
 
 When installed, it'll automatically load with the game.
 
+> [!WARNING]
+> If you already have it installed and are updating to a new version, delete `CommunityPatch.ini` to generate new settings.
 
 ## Settings
 To change settings - launch the game at least once, close it, then edit `CommunityPatch.ini` located in the scripts folder.
@@ -15,15 +17,19 @@ Controls the FPS cap.
 Recommended to keep at `60` to prevent minor physics issues.  
 The game's default is `30`.
 
-**player_texture_fix**  
-Fixes a bug that causes the player's textures to load at half resolution.  
-Set to `true` to enable the fix, `false` to disable it.
-
 **desaturation_multiplier**  
 A multiplier that controls the intensity of the game's desaturation filter.  
-Set to `0` to completely remove the desaturation, `0.5` to half the intensity, `9999` for black and white, etc.  
+Set to `0` to completely remove the desaturation, `0.5` to halve the intensity, `9999` for black and white, etc.  
 The game's default is `1`.
 
+> [!IMPORTANT]
+> Set a fix to `true` to enable it, `false` to disable it.
+
+**fix_player_texture**  
+Fixes a bug that causes the player's textures to load at half resolution.  
+
+**fix_transform_invincibility**  
+Fixes a bug that causes most NPCs to be invincible while transforming.  
 
 
 ## Credits
