@@ -40,6 +40,6 @@ Fixes a bug that causes most NPCs to be invincible while transforming.
 
 
 ## Notes
-- AI is used to reverse-engineer the cause of some game bugs, everything else is done by hand.
+- AI is used to reverse-engineer the cause of game bugs, everything else is done by hand.
 - I plan to eventually make a complete community patch and package this with it, hence the naming inconsistencies.
 - Feel free to contact me on Discord @ `.breadn`
