@@ -102,5 +102,25 @@ bool TransformInvuln(DWORD baseAddress)
 	return 0;
 }
 
+//bool TransformInvuln(DWORD baseAddress)
+//{
+//	DWORD addr = baseAddress + 0x2C1214;
+//	uint8_t patch[] = {0x90, 0x90, 0x90, 0x90, 0x90, 0x90};
+//
+//	DWORD oldProtection{};
+//	if (!VirtualProtect((LPVOID)addr, 0x6, PAGE_EXECUTE_READWRITE, &oldProtection))
+//	{
+//		return 1;
+//	}
+//
+//	std::cout << std::hex << *(uint64_t*)addr << "\n";
+//
+//	std::memcpy((uint8_t*)addr, patch, 6);
+//
+//	std::cout << std::hex << *(uint64_t*)addr << "\n";
+//
+//	return 0;
+//}
+
 
 }

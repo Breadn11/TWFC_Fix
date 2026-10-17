@@ -26,7 +26,7 @@ bool HandleIni()
 		ini["config"]["fps"] = "60";
 		ini["config"]["desaturation_multiplier"] = "0";
 		ini["config"]["fix_player_texture"] = "true";
-		ini["config"]["fix_transform_invincibility"] = "true";
+		ini["config"]["fix_transform_invulnerability"] = "true";
 		ini["advanced"]["debug"] = "false";
 		
 		if (!file.generate(ini, true))
@@ -38,7 +38,7 @@ bool HandleIni()
 	std::string valRead_fps = ini.get("config").get("fps");
 	std::string valRead_sat = ini.get("config").get("desaturation_multiplier");
 	std::string valRead_texFix = ini.get("config").get("fix_player_texture");
-	std::string valRead_invulnFix = ini.get("config").get("fix_transform_invincibility");
+	std::string valRead_invulnFix = ini.get("config").get("fix_transform_invulnerability");
 	std::string valRead_debug = ini.get("advanced").get("debug");
 
 	try 
@@ -59,10 +59,13 @@ bool HandleIni()
 
 DWORD WINAPI MainThread(LPVOID)
 {
-	if (config::debug)
+	if (HandleIni() == 1)
 	{
-		ConsoleEnable();
+		ErrorBox("error reading or writing CommunityPatch.ini, this may be fixed by deleting it and trying again");
+		return 1;
 	}
+
+	if (config::debug){ConsoleEnable();}
 	
 	// todo: use GetModuleHandleW instead
 	const DWORD baseAddress = GetModuleBaseAddress(config::moduleName);
@@ -70,12 +73,6 @@ DWORD WINAPI MainThread(LPVOID)
 	if (baseAddress == 0)
 	{
 		ErrorBox("failed to get module base address");
-		return 1;
-	}
-
-	if (HandleIni() == 1)
-	{
-		ErrorBox("error reading or writing CommunityPatch.ini, this may be fixed by deleting it and trying again");
 		return 1;
 	}
 	
@@ -97,8 +94,7 @@ DWORD WINAPI MainThread(LPVOID)
 		}
 	}
 	
-	// todo: replace all instances of "invincibility" with "invulnerability"
-	// also swap to using memcpy to change exactly 6 bytes instead of 8
+	// todo: swap to using memcpy to change exactly 6 bytes instead of 8
 	if (config::doTransformFix)
 	{
 		if (patches::TransformInvuln(baseAddress) == 1)
@@ -109,7 +105,8 @@ DWORD WINAPI MainThread(LPVOID)
 	}
 
 	// todo: find alternative, this property doesn't affect cutscenes
-	// also keep this function last cuz no threading for sleeps
+	
+	// keep this function last cuz no threading for sleeps
 	if (config::desaturationMulti != 1.0f)
 	{
 		if (patches::Desaturation(baseAddress, config::desaturationMulti) == 1)

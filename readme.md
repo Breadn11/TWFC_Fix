@@ -28,8 +28,8 @@ The game's default is `1`.
 **fix_player_texture**  
 Fixes a bug that causes the player's textures to load at half resolution.  
 
-**fix_transform_invincibility**  
-Fixes a bug that causes most NPCs to be invincible while transforming.  
+**fix_transform_invulnerability**  
+Fixes a bug that causes most NPCs to be invulnerable while transforming.
 
 
 ## Credits
