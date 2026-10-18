@@ -11,7 +11,7 @@ namespace config
 	
 	bool debug = false;
 	float fpsDesired = 60.0f;
-	float desaturationMulti = 0.0f;
+	float desaturationMulti = 1.0f;
 	bool doTextureFix = true;
 	bool doTransformFix = true;
 }
@@ -24,7 +24,7 @@ bool HandleIni()
 	if (!file.read(ini))
 	{
 		ini["config"]["fps"] = "60";
-		ini["config"]["desaturation_multiplier"] = "0";
+		ini["config"]["desaturation_multiplier"] = "1";
 		ini["config"]["fix_player_texture"] = "true";
 		ini["config"]["fix_transform_invulnerability"] = "true";
 		ini["advanced"]["debug"] = "false";
