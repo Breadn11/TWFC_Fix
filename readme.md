@@ -1,7 +1,7 @@
 ## Installation
 - Download the Win32 version of `d3d9.dll` from [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases).
 - Place `d3d9.dll` into the game's Binaries folder.
-- On the right side of this page, click on "Releases" and download `CommunityPatch.asi`
+- Go to [releases](https://github.com/Breadn11/TWFC_Fix/releases) and download the latest version of `CommunityPatch.asi`.
 - Make a folder called `scripts` inside the game's Binaries folder, then place `CommunityPatch.asi` inside of it.
 
 When installed, it'll automatically load with the game.
