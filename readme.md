@@ -18,7 +18,7 @@ Recommended to keep at `60` to prevent minor physics issues.
 The game's default is `30`.
 
 **desaturation_multiplier**  
-A multiplier that controls the intensity of the game's desaturation filter.  
+A multiplier that controls the intensity of the game's desaturation filter. This does not affect cutscenes.  
 Set to `0` to completely remove the desaturation, `0.5` to halve the intensity, `9999` for black and white, etc.  
 The game's default is `1`.
 
