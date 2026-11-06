@@ -40,6 +40,6 @@ Fixes a bug that causes most NPCs to be invulnerable while transforming.
 
 
 ## Notes
+- This works completely standalone but was made to be a part of the [Campaign Community Patch.](https://www.nexusmods.com/transformerswarforcybertron/mods/49) This is why it doesn't have a consistent name and sometimes references said community patch.
 - AI is used to reverse-engineer the cause of game bugs, everything else is done by hand.
-- I plan to eventually make a complete community patch and package this with it, hence the naming inconsistencies.
 - Feel free to contact me on Discord @ `.breadn`
